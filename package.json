@@ -1,17 +1,17 @@
 {
-  "name": "honeycomb",
-  "description": "all-in-one task starter app with jsPsych + React + Electron + psiturk ",
+  "name": "sync-task",
+  "description": "Simple task for providing event codes to indicate the start and end of a recording.",
   "author": {
-    "name": "Brown CCV",
-    "email": "ccv-bot@brown.edu",
-    "url": "ccv.brown.edu"
+    "name": "Evan Dastin-van Rijn",
+    "email": "evan_dastin-van_rijn@alumni.brown.edu",
+    "url": "borton.engin.brown.edu"
   },
   "version": "2.2.0",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",
   "homepage": ".",
-  "repository": "https://github.com/brown-ccv/honeycomb",
+  "repository": "https://github.com/neuromotion/sync-task",
   "dependencies": {
     "@brown-ccv/behavioral-task-trials": "^1.0.0",
     "@fortawesome/fontawesome-free": "^5.9.0",
