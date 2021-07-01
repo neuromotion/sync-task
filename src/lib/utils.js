@@ -93,6 +93,12 @@ const beep = (audioCodes) => {
   o.stop(context.currentTime + 0.4)
 }
 
+const getUserId = (data) => {
+  const patientId = JSON.parse(data.responses)['Q0']
+  jsPsych.data.addProperties({patient_id: patientId, timestamp: Date.now()})
+  console.log("ID", patientId)
+}
+
 
 export {
   sleep,
@@ -106,5 +112,6 @@ export {
   startKeypressListener,
   getProlificId,
   getTurkUniqueId,
-  beep
+  beep,
+  getUserId
 }

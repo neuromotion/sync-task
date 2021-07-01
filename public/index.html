@@ -24,7 +24,10 @@
     <script src="%PUBLIC_URL%/static/lib/backbone-min.js" type="text/javascript"> </script>
     <script src="%PUBLIC_URL%/static/lib/psiturk.js" type="text/javascript"> </script>
 
-    <title>Honeycomb</title>
+    <script>
+      document.title=process.env.REACT_APP_TASK_NAME;
+    </script>
+
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>

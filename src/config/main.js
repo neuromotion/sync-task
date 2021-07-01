@@ -24,13 +24,14 @@ const audioCodes = {
   type: "sine",
 };
 
-const taskName = "honeycomb template";
+const taskName = process.env.REACT_APP_TASK_NAME;
 
 // is this mechanical turk?
 let USE_MTURK = !jsPsych.turk.turkInfo().outsideTurk;
 let USE_PROLIFIC = getProlificId() && !USE_MTURK;
 let USE_ELECTRON = true;
 let USE_FIREBASE = process.env.REACT_APP_FIREBASE === "true";
+const AT_HOME = (process.env.REACT_APP_AT_HOME === 'true')
 
 try {
   window.require("electron");
@@ -76,7 +77,8 @@ const config = init({
   USE_VOLUME,
   USE_CAMERA,
   USE_PROLIFIC,
-  USE_FIREBASE
+  USE_FIREBASE,
+  AT_HOME
 });
 
 export {
@@ -87,4 +89,5 @@ export {
   eventCodes,
   config,
   audioCodes,
+  AT_HOME
 };

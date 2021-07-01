@@ -7,11 +7,11 @@ const adjustVolume = () => {
     <h1>${lang.instructions.adjust_volume}</h1>
     </div>
     `, true)
-    
+
     return {
-        type: 'html_keyboard_response',
-        stimulus: stimulus,
-        prompt:  lang.prompt.continue.press,
+      type: 'html_button_response',
+      stimulus: stimulus,
+      choices: [lang.prompt.continue],
         response_ends_trial: true
     }
 }
