@@ -1,4 +1,4 @@
-import { lang, AT_HOME } from '../config/main'
+import { lang } from '../config/main'
 import { photodiodeGhostBox } from '../lib/markup/photodiode'
 import { baseStimulus } from '../lib/markup/stimuli'
 
