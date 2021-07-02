@@ -70,7 +70,7 @@ jobs:
         uses: xom9ikk/dotenv@v1.0.2
         with:
           path: ./env
-          mode: interviev
+          mode: interview
       - name: Load .env file for tsst
         if: matrix.task=='tsst'
         uses: xom9ikk/dotenv@v1.0.2
