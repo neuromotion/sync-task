@@ -60,17 +60,17 @@ jobs:
           path: ./env
           mode: video
       - name: Load .env file for task
-        if: matrix.task=='programming'
+        - if: matrix.task=='programming'
         uses: xom9ikk/dotenv@v1.0.2
         with:
           path: ./env
           mode: programming
-        if: matrix.task=='interview'
+        - if: matrix.task=='interview'
         uses: xom9ikk/dotenv@v1.0.2
         with:
           path: ./env
           mode: interviev
-        if: matrix.task=='tsst'
+        - if: matrix.task=='tsst'
         uses: xom9ikk/dotenv@v1.0.2
         with:
           path: ./env
