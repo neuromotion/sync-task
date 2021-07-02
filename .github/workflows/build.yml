@@ -18,15 +18,16 @@ jobs:
       matrix:
         setting: [home, clinic]
         video: [on, off]
+        task: [programming, interview, tsst]
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        exclude: 
-          # exclude clinic video on ubuntu-latest 
+        exclude:
+          # exclude clinic video on ubuntu-latest
           - os: ubuntu-latest
             setting: clinic
-            video: on 
+            video: on
           - os: macOS-latest
             setting: clinic
-            video: on 
+            video: on
           - os: ubuntu-latest
             setting: home
             video: on
@@ -58,6 +59,22 @@ jobs:
         with:
           path: ./env
           mode: video
+      - name: Load .env file for task
+        if: matrix.task=='programming'
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: programming
+        if: matrix.task=='interview'
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: interviev
+        if: matrix.task=='tsst'
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: tsst
       - name: npm build
         run: npm run build
       - name: npm test
