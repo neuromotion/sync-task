@@ -56,43 +56,43 @@ jobs:
 
       # Build electron app package installers
       - name: package electron - windows-programming
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') && matrix.task=='programming'
         run: npm run package:windows:programming
       - name: package electron - windows-interview
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') && matrix.task=='interview'
         run: npm run package:windows:interview
       - name: package electron - windows-tsst
-        if: startsWith(matrix.os, 'windows')
+        if: startsWith(matrix.os, 'windows') && matrix.task=='tsst'
         run: npm run package:windows:tsst
       - name: package electron - linux-programming
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='programming'
         run: npm run package:linux:programming
       - name: package electron - linux-interview
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='interview'
         run: npm run package:linux:interview
       - name: package electron - linux-tsst
-        if: startsWith(matrix.os, 'ubuntu')
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='tsst'
         run: npm run package:linux:tsst
       - name: package electron - mac-programming
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
         run: npm run package:mac:programming
       - name: package electron - mac-interview
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
         run: npm run package:mac:interview
       - name: package electron - mac-tsst
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
         run: npm run package:mac:tsst
       - name: npm rebuild - mac
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
         run: npm rebuild
       - name: Mac installer-programming
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
         run: npm run installer:mac:programming
       - name: Mac installer-interview
         if: startsWith(matrix.os, 'mac')
-        run: npm run installer:mac:interview
+        run: npm run installer:mac:interview && matrix.task=='interview'
       - name: Mac installer-tsst
-        if: startsWith(matrix.os, 'mac')
+        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
         run: npm run installer:mac:tsst
 
       # Upload installers to github action
