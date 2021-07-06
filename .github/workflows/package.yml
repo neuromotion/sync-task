@@ -25,7 +25,7 @@ jobs:
            (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
-        task: [programming, interview, tsst]
+        task: [Programming, Interview, TSST]
 
     steps:
     # Set up js package
@@ -57,43 +57,43 @@ jobs:
 
       # Build electron app package installers
       - name: package electron - windows-programming
-        if: startsWith(matrix.os, 'windows') && matrix.task=='programming'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='Programming'
         run: npm run package:windows:programming
       - name: package electron - windows-interview
-        if: startsWith(matrix.os, 'windows') && matrix.task=='interview'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='Interview'
         run: npm run package:windows:interview
       - name: package electron - windows-tsst
-        if: startsWith(matrix.os, 'windows') && matrix.task=='tsst'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='TSST'
         run: npm run package:windows:tsst
       - name: package electron - linux-programming
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='programming'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='Programming'
         run: npm run package:linux:programming
       - name: package electron - linux-interview
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='interview'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='Interview'
         run: npm run package:linux:interview
       - name: package electron - linux-tsst
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='tsst'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='TSST'
         run: npm run package:linux:tsst
       - name: package electron - mac-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='Programming'
         run: npm run package:mac:programming
       - name: package electron - mac-interview
-        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='Interview'
         run: npm run package:mac:interview
       - name: package electron - mac-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
         run: npm run package:mac:tsst
       - name: npm rebuild - mac
-        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
+        if: startsWith(matrix.os, 'mac')
         run: npm rebuild
       - name: Mac installer-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='Programming'
         run: npm run installer:mac:programming
       - name: Mac installer-interview
         if: startsWith(matrix.os, 'mac')
-        run: npm run installer:mac:interview && matrix.task=='interview'
+        run: npm run installer:mac:interview && matrix.task=='Interview'
       - name: Mac installer-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
         run: npm run installer:mac:tsst
 
       # Upload installers to github action
@@ -102,19 +102,19 @@ jobs:
         if: startsWith(matrix.os, 'windows')
         with:
           name: ${{ format('win-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}-setup.exe
       - name: upload mac-installer
         uses: actions/upload-artifact@master
         if: startsWith(matrix.os, 'mac')
         with:
           name: ${{ format('mac-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ steps.package_info.outputs.package_name }}-${{ steps.package_info.outputs.package_version }}.dmg
+          path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}.dmg
       - name: upload linux-installer
         uses: actions/upload-artifact@master
         if: startsWith(matrix.os, 'ubuntu')
         with:
           name: ${{ format('linux-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ steps.package_info.outputs.package_name }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          path: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
 
       # Build PsiTurk - linux only
       - name: Set up Python 3.7
@@ -129,10 +129,10 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: |
           cd psiturkit
-          ./psiturk-it -p ${{ steps.package_info.outputs.package_name }}-psiturk
+          ./psiturk-it -p ${{ matrix.task }}-psiturk
       - name: Upload PsiTurk Build
         uses: actions/upload-artifact@master
         if: startsWith(matrix.os, 'ubuntu')
         with:
           name: psiturk-build
-          path: psiturkit/${{ steps.package_info.outputs.package_name }}-psiturk
+          path: psiturkit/${{ matrix.task }}-psiturk
