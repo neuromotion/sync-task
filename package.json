@@ -1,5 +1,4 @@
 {
-  "name": "sync-task",
   "description": "Simple task for providing event codes to indicate the start and end of a recording.",
   "author": {
     "name": "Evan Dastin-van Rijn",
@@ -42,7 +41,7 @@
     "build": "react-scripts build",
     "package:windows:programming": "electron-packager . Programming --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
     "package:mac:programming": "electron-packager . Programming --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
-    "package:linux:programming": "electron-packager . Programming --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+    "package:linux:programming": "electron-packager . Programming --platform linux --arch x64 --executableName Programming --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
     "package:windows:interview": "electron-packager . Interview --platform win32 --arch x64 --icon ./assets/icons/win/interview.ico --out dist/ --overwrite --asar ",
     "package:mac:interview": "electron-packager . Interview --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/interview.icns --overwrite",
     "package:linux:interview": "electron-packager . Interview --platform linux --arch x64 --icon ./assets/icons/mac/interview.icns --out dist/ --overwrite",
@@ -55,9 +54,9 @@
     "postpackage:linux:programming": "electron-installer-debian --src dist/Programming-linux-x64/ --dest dist/installers/ --arch x64 --overwrite",
     "postpackage:linux:interview": "electron-installer-debian --src dist/Interview-linux-x64/ --dest dist/installers/ --arch x64 --overwrite",
     "postpackage:linux:tsst": "electron-installer-debian --src dist/TSST-linux-x64/ --dest dist/installers/ --arch x64 --overwrite",
-    "installer:mac:programming": "electron-installer-dmg ./dist/Programming-darwin-x64/${npm_package_name}.app ${npm_package_name}-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
-    "installer:mac:interview": "electron-installer-dmg ./dist/Interview-darwin-x64/${npm_package_name}.app ${npm_package_name}-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/interview.icns --overwrite",
-    "installer:mac:tsst": "electron-installer-dmg ./dist/TSST-darwin-x64/${npm_package_name}.app ${npm_package_name}-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/tsst.icns --overwrite",
+    "installer:mac:programming": "electron-installer-dmg ./dist/Programming-darwin-x64/Programming.app Programming-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "installer:mac:interview": "electron-installer-dmg ./dist/Interview-darwin-x64/Interview.app Interview-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/interview.icns --overwrite",
+    "installer:mac:tsst": "electron-installer-dmg ./dist/TSST-darwin-x64/TSST.app TSST-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/tsst.icns --overwrite",
     "rebuild": "electron-rebuild",
     "eject": "react-scripts eject",
     "electron": "electron .",

@@ -90,8 +90,8 @@ jobs:
         if: startsWith(matrix.os, 'mac') && matrix.task=='Programming'
         run: npm run installer:mac:programming
       - name: Mac installer-interview
-        if: startsWith(matrix.os, 'mac')
-        run: npm run installer:mac:interview && matrix.task=='Interview'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='Interview'
+        run: npm run installer:mac:interview
       - name: Mac installer-tsst
         if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
         run: npm run installer:mac:tsst
