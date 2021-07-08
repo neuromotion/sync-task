@@ -34,6 +34,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
+
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info
@@ -96,7 +97,7 @@ jobs:
         if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
         run: npm run installer:mac:tsst
 
-      # Upload installers to github action
+      # # Upload installers to github action
       - name: upload win-installer
         uses: actions/upload-artifact@master
         if: startsWith(matrix.os, 'windows')
@@ -117,22 +118,22 @@ jobs:
           path: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
 
       # Build PsiTurk - linux only
-      - name: Set up Python 3.7
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-      - name: Install PsiTurk
-        if: startsWith(matrix.os, 'ubuntu')
-        run: pip install psiturk
-      - name: Create Psiturk Build
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          cd psiturkit
-          ./psiturk-it -p ${{ matrix.task }}-psiturk
-      - name: Upload PsiTurk Build
-        uses: actions/upload-artifact@master
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          name: psiturk-build
-          path: psiturkit/${{ matrix.task }}-psiturk
+      # - name: Set up Python 3.7
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   uses: actions/setup-python@v1
+      #   with:
+      #     python-version: 3.7
+      # - name: Install PsiTurk
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: pip install psiturk
+      # - name: Create Psiturk Build
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: |
+      #     cd psiturkit
+      #     ./psiturk-it -p ${{ matrix.task }}-psiturk
+      # - name: Upload PsiTurk Build
+      #   uses: actions/upload-artifact@master
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   with:
+      #     name: psiturk-build
+      #     path: psiturkit/${{ matrix.task }}-psiturk
