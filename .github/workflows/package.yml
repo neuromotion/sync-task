@@ -25,7 +25,7 @@ jobs:
            (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
-        task: [Programming, Interview, TSST]
+        task: [Programming]
 
     steps:
     # Set up js package
