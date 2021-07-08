@@ -1,4 +1,5 @@
 {
+  "name": "sync-task",
   "description": "Simple task for providing event codes to indicate the start and end of a recording.",
   "author": {
     "name": "Evan Dastin-van Rijn",
