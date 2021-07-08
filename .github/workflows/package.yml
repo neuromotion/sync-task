@@ -34,9 +34,10 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Set package version and name
-        uses: brown-ccv/gh-actions/get-package-info@main
-        id: package_info
+
+      # - name: Set package version and name
+      #   uses: brown-ccv/gh-actions/get-package-info@main
+      #   id: package_info
 
       # install, test, build package
       - name: npm install
@@ -96,43 +97,43 @@ jobs:
         if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
         run: npm run installer:mac:tsst
 
-      # Upload installers to github action
-      - name: upload win-installer
-        uses: actions/upload-artifact@master
-        if: startsWith(matrix.os, 'windows')
-        with:
-          name: ${{ format('win-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}-setup.exe
-      - name: upload mac-installer
-        uses: actions/upload-artifact@master
-        if: startsWith(matrix.os, 'mac')
-        with:
-          name: ${{ format('mac-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}.dmg
-      - name: upload linux-installer
-        uses: actions/upload-artifact@master
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          name: ${{ format('linux-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+      # # Upload installers to github action
+      # - name: upload win-installer
+      #   uses: actions/upload-artifact@master
+      #   if: startsWith(matrix.os, 'windows')
+      #   with:
+      #     name: ${{ format('win-installer-{0}', github.event.inputs.setting) }}
+      #     path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+      # - name: upload mac-installer
+      #   uses: actions/upload-artifact@master
+      #   if: startsWith(matrix.os, 'mac')
+      #   with:
+      #     name: ${{ format('mac-installer-{0}', github.event.inputs.setting) }}
+      #     path: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}.dmg
+      # - name: upload linux-installer
+      #   uses: actions/upload-artifact@master
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   with:
+      #     name: ${{ format('linux-installer-{0}', github.event.inputs.setting) }}
+      #     path: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
 
       # Build PsiTurk - linux only
-      - name: Set up Python 3.7
-        if: startsWith(matrix.os, 'ubuntu')
-        uses: actions/setup-python@v1
-        with:
-          python-version: 3.7
-      - name: Install PsiTurk
-        if: startsWith(matrix.os, 'ubuntu')
-        run: pip install psiturk
-      - name: Create Psiturk Build
-        if: startsWith(matrix.os, 'ubuntu')
-        run: |
-          cd psiturkit
-          ./psiturk-it -p ${{ matrix.task }}-psiturk
-      - name: Upload PsiTurk Build
-        uses: actions/upload-artifact@master
-        if: startsWith(matrix.os, 'ubuntu')
-        with:
-          name: psiturk-build
-          path: psiturkit/${{ matrix.task }}-psiturk
+      # - name: Set up Python 3.7
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   uses: actions/setup-python@v1
+      #   with:
+      #     python-version: 3.7
+      # - name: Install PsiTurk
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: pip install psiturk
+      # - name: Create Psiturk Build
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   run: |
+      #     cd psiturkit
+      #     ./psiturk-it -p ${{ matrix.task }}-psiturk
+      # - name: Upload PsiTurk Build
+      #   uses: actions/upload-artifact@master
+      #   if: startsWith(matrix.os, 'ubuntu')
+      #   with:
+      #     name: psiturk-build
+      #     path: psiturkit/${{ matrix.task }}-psiturk
