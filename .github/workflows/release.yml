@@ -19,6 +19,10 @@ jobs:
     steps:
       # Set up js package
       - uses: actions/checkout@v1
+      - id: task-string
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ matrix.task }}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -100,8 +104,8 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
-          asset_name: ${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_${{ matrix.setting }}_x64.deb
+          file: dist/installers/${{ steps.task-string.outputs.lowercase }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          asset_name: ${{ steps.task-string.outputs.lowercase }}_${{ steps.package_info.outputs.package_version }}_${{ matrix.setting }}_x64.deb
           tag: ${{ github.ref }}
       - name: Upload app to release - mac
         if: startsWith(matrix.os, 'mac')

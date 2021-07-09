@@ -30,6 +30,10 @@ jobs:
     steps:
     # Set up js package
       - uses: actions/checkout@v1
+      - id: task-string
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ matrix.task }}
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
@@ -115,7 +119,7 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         with:
           name: ${{ format('linux-installer-{0}', github.event.inputs.setting) }}
-          path: dist/installers/${{ matrix.task }}_${{ steps.package_info.outputs.package_version }}_x64.deb
+          path: dist/installers/${{ steps.task-string.outputs.lowercase }}_${{ steps.package_info.outputs.package_version }}_x64.deb
 
       # Build PsiTurk - linux only
       # - name: Set up Python 3.7
