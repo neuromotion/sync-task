@@ -19,7 +19,7 @@ jobs:
     steps:
       # Set up js package
       - uses: actions/checkout@v1
-        - id: task-string
+      - id: task-string
         uses: ASzc/change-string-case-action@v1
         with:
           string: ${{ matrix.task }}
