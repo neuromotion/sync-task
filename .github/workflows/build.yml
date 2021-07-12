@@ -18,7 +18,7 @@ jobs:
       matrix:
         setting: [home, clinic]
         video: [on, off]
-        task: [programming, interview, tsst]
+        task: [programming, interview, tsst, erp]
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude:
           # exclude clinic video on ubuntu-latest
@@ -77,6 +77,12 @@ jobs:
         with:
           path: ./env
           mode: tsst
+      - name: Load .env file for erp
+        if: matrix.task=='erp'
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: erp
       - name: npm build
         run: npm run build
       - name: npm test

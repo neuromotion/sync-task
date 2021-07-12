@@ -14,7 +14,7 @@ jobs:
       matrix:
         setting: ['home', 'clinic']
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        task: [Programming, Interview, TSST]
+        task: [programming, interview, tsst, erp]
 
     steps:
       # Set up js package
@@ -50,44 +50,56 @@ jobs:
 
       # Build electron app package installers
       - name: package electron - windows-programming
-        if: startsWith(matrix.os, 'windows') && matrix.task=='Programming'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='programming'
         run: npm run package:windows:programming
       - name: package electron - windows-interview
-        if: startsWith(matrix.os, 'windows') && matrix.task=='Interview'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='interview'
         run: npm run package:windows:interview
       - name: package electron - windows-tsst
-        if: startsWith(matrix.os, 'windows') && matrix.task=='TSST'
+        if: startsWith(matrix.os, 'windows') && matrix.task=='tsst'
         run: npm run package:windows:tsst
+      - name: package electron - windows-erp
+        if: startsWith(matrix.os, 'windows') && matrix.task=='erp'
+        run: npm run package:windows:erp
       - name: package electron - linux-programming
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='Programming'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='programming'
         run: npm run package:linux:programming
       - name: package electron - linux-interview
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='Interview'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='interview'
         run: npm run package:linux:interview
       - name: package electron - linux-tsst
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='TSST'
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='tsst'
         run: npm run package:linux:tsst
+      - name: package electron - linux-erp
+        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='erp'
+        run: npm run package:linux:erp
       - name: package electron - mac-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='Programming'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
         run: npm run package:mac:programming
       - name: package electron - mac-interview
-        if: startsWith(matrix.os, 'mac') && matrix.task=='Interview'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
         run: npm run package:mac:interview
       - name: package electron - mac-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
         run: npm run package:mac:tsst
+      - name: package electron - mac-erp
+        if: startsWith(matrix.os, 'mac') && matrix.task=='erp'
+        run: npm run package:mac:erp
       - name: npm rebuild - mac
         if: startsWith(matrix.os, 'mac')
         run: npm rebuild
       - name: Mac installer-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='Programming'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
         run: npm run installer:mac:programming
       - name: Mac installer-interview
-        if: startsWith(matrix.os, 'mac') && matrix.task=='Interview'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
         run: npm run installer:mac:interview
       - name: Mac installer-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='TSST'
+        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
         run: npm run installer:mac:tsst
+      - name: Mac installer-erp
+        if: startsWith(matrix.os, 'mac') && matrix.task=='erp'
+        run: npm run installer:mac:erp
 
       # Upload installers to github release
 
