@@ -41,6 +41,11 @@ jobs:
         with:
           path: ./env
           mode: ${{matrix.setting}}
+      - name: Load .env file for task
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: ${{matrix.task}}
       - name: npm build
         run: npm run build
       - name: npm test
