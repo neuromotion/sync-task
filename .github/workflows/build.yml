@@ -59,30 +59,11 @@ jobs:
         with:
           path: ./env
           mode: video
-      - name: Load .env file for programming
-        if: matrix.task=='programming'
+      - name: Load .env file for task
         uses: xom9ikk/dotenv@v1.0.2
         with:
           path: ./env
-          mode: programming
-      - name: Load .env file for interview
-        if: matrix.task=='interview'
-        uses: xom9ikk/dotenv@v1.0.2
-        with:
-          path: ./env
-          mode: interview
-      - name: Load .env file for tsst
-        if: matrix.task=='tsst'
-        uses: xom9ikk/dotenv@v1.0.2
-        with:
-          path: ./env
-          mode: tsst
-      - name: Load .env file for erp
-        if: matrix.task=='erp'
-        uses: xom9ikk/dotenv@v1.0.2
-        with:
-          path: ./env
-          mode: erp
+          mode: ${{matrix.task}}
       - name: npm build
         run: npm run build
       - name: npm test

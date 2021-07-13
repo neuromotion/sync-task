@@ -11,6 +11,10 @@ on:
         description: Which OS to target - 'win', 'mac', 'linux', 'all'
         required: true
         default: 'win'
+      task:
+        description: Which task to build - 'programming', 'interview', 'tsst', 'erp', 'all'
+        required: true
+        default: 'programming'
 
 jobs:
   build:
@@ -25,7 +29,12 @@ jobs:
            (github.event.inputs.os == 'win' && fromJSON('["windows-latest"]')) ||
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
-        task: [programming, interview, tsst,erp]
+        task: ${{
+          (github.event.inputs.task == 'all' && fromJSON('["programming", "interview", "tsst","erp"]')) ||
+           (github.event.inputs.task == 'programming' && fromJSON('["programming"]')) ||
+           (github.event.inputs.task == 'interview' && fromJSON('["interview"]')) ||
+           (github.event.inputs.task == 'tsst' && fromJSON('["tsst"]')) ||
+           (github.event.inputs.task == 'erp' && fromJSON('["erp"]')) }}
 
     steps:
     # Set up js package
@@ -53,6 +62,11 @@ jobs:
         with:
           path: ./env
           mode: ${{github.event.inputs.setting}}
+      - name: Load .env file for task
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: ${{matrix.task}}
       - name: npm build
         run: npm run build
       - name: npm test
@@ -61,57 +75,21 @@ jobs:
           CI: true
 
       # Build electron app package installers
-      - name: package electron - windows-programming
-        if: startsWith(matrix.os, 'windows') && matrix.task=='programming'
-        run: npm run package:windows:programming
-      - name: package electron - windows-interview
-        if: startsWith(matrix.os, 'windows') && matrix.task=='interview'
-        run: npm run package:windows:interview
-      - name: package electron - windows-tsst
-        if: startsWith(matrix.os, 'windows') && matrix.task=='tsst'
-        run: npm run package:windows:tsst
-      - name: package electron - windows-erp
-        if: startsWith(matrix.os, 'windows') && matrix.task=='erp'
-        run: npm run package:windows:erp
-      - name: package electron - linux-programming
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='programming'
-        run: npm run package:linux:programming
-      - name: package electron - linux-interview
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='interview'
-        run: npm run package:linux:interview
-      - name: package electron - linux-tsst
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='tsst'
-        run: npm run package:linux:tsst
-      - name: package electron - linux-erp
-        if: startsWith(matrix.os, 'ubuntu') && matrix.task=='erp'
-        run: npm run package:linux:erp
-      - name: package electron - mac-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
-        run: npm run package:mac:programming
-      - name: package electron - mac-interview
-        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
-        run: npm run package:mac:interview
-      - name: package electron - mac-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
-        run: npm run package:mac:tsst
-      - name: package electron - mac-erp
-        if: startsWith(matrix.os, 'mac') && matrix.task=='erp'
-        run: npm run package:mac:erp
+      - name: package electron - windows
+        if: startsWith(matrix.os, 'windows')
+        run: npm run package:windows:${{ matrix.task }}
+      - name: package electron - linux
+        if: startsWith(matrix.os, 'ubuntu')
+        run: npm run package:linux:${{ matrix.task }}
+      - name: package electron - mac
+        if: startsWith(matrix.os, 'mac')
+        run: npm run package:mac:${{ matrix.task }}
       - name: npm rebuild - mac
         if: startsWith(matrix.os, 'mac')
         run: npm rebuild
-      - name: Mac installer-programming
-        if: startsWith(matrix.os, 'mac') && matrix.task=='programming'
-        run: npm run installer:mac:programming
-      - name: Mac installer-interview
-        if: startsWith(matrix.os, 'mac') && matrix.task=='interview'
-        run: npm run installer:mac:interview
-      - name: Mac installer-tsst
-        if: startsWith(matrix.os, 'mac') && matrix.task=='tsst'
-        run: npm run installer:mac:tsst
-      - name: Mac installer-erp
-        if: startsWith(matrix.os, 'mac') && matrix.task=='erp'
-        run: npm run installer:mac:erp
+      - name: Mac installer
+        if: startsWith(matrix.os, 'mac')
+        run: npm run installer:mac:${{ matrix.task }}
 
       # # Upload installers to github action
       - name: upload win-installer
