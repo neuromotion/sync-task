@@ -6,7 +6,7 @@
     "email": "evan_dastin-van_rijn@alumni.brown.edu",
     "url": "borton.engin.brown.edu"
   },
-  "version": "2.2.2",
+  "version": "2.2.3",
   "license": "MIT",
   "private": true,
   "main": "public/electron.js",
