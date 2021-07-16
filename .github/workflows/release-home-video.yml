@@ -1,0 +1,69 @@
+name: release home video
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [programming, interview, tsst, erp]
+    steps:
+     # Set up js package
+      - uses: actions/checkout@v1
+      - id: task-string
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ matrix.task }}
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Set package version and name
+        uses: brown-ccv/gh-actions/get-package-info@main
+        id: package_info
+
+      # install, test, build package
+      - name: npm install
+        run: |
+          npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GITHUB_TOKEN }}
+          npm install
+      - name: Load .env file
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: home
+      - name: Load .env file for video
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: ${{ matrix.task }}
+      - name: Load .env file for video
+        uses: xom9ikk/dotenv@v1.0.2
+        with:
+          path: ./env
+          mode: video
+      - name: npm build
+        run: npm run build
+      - name: npm test
+        run: npm test
+        env:
+          CI: true
+
+      # Build electron app package installers
+      - name: package electron - windows
+        run: npm run package:windows:${{ matrix.task }}
+
+      # Upload installers to github release
+      - name: Upload app to release - windows
+        if: startsWith(matrix.os, 'windows')
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: dist/installers/${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}-setup.exe
+          asset_name: ${{ matrix.task }}-${{ steps.package_info.outputs.package_version }}-home-video-setup.exe
+          tag: ${{ github.ref }}
