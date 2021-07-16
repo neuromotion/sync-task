@@ -13,6 +13,7 @@ const log = require('electron-log');
 // Define default environment variables
 let USE_EEG = false
 let VIDEO = false
+let TASK_NAME = "sync-task"
 
 // Event Trigger
 const HIDE_FRAME_ELECTRON = process.env.REACT_APP_HIDE_FRAME_ELECTRON === "true";
@@ -146,6 +147,7 @@ const handleEventSend = (code) => {
 ipc.on('updateEnvironmentVariables', (event, args) => {
   USE_EEG = args.USE_EEG
   VIDEO = args.USE_CAMERA
+  TASK_NAME = args.TASK_NAME
   if(USE_EEG) {
     setUpPort()
     .then(() => handleEventSend(eventCodes.test_connect))
@@ -196,7 +198,7 @@ ipc.on('data', (event, args) => {
     participantID = args.participant_id
     studyID = args.study_id
     const desktop = app.getPath('desktop')
-    const name = process.env.REACT_APP_TASK_NAME.toLowerCase()
+    const name = TASK_NAME.toLowerCase()
     const today = new Date()
     const date = today.toISOString().slice(0,10)
     fileName = `pid_${participantID}_${today.getTime()}.json`

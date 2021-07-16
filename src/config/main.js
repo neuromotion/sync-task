@@ -78,7 +78,8 @@ const config = init({
   USE_CAMERA,
   USE_PROLIFIC,
   USE_FIREBASE,
-  AT_HOME
+  AT_HOME,
+  TASK_NAME: taskName
 });
 
 export {
