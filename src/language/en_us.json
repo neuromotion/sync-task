@@ -8,7 +8,7 @@
     "continue": "Continue",
     "start": "Start",
     "stop": "Stop",
-    "focus": "Make sure the photodiode is aligned and the EEG recording has begun before continuing.",
+    "focus": "Make sure the photodiode is covering the spot and any external recordings have begun before continuing.",
     "fullscreen": "Press 'cmd + ctrl + F' to toggle Fullscreen.",
     "zoom": "Zoom in to enlarge the screen.",
     "setting_up": "Setting up task...",
@@ -22,7 +22,7 @@
     "set": "Please enter subject ID."
   },
   "eventMarker" : {
-    "found": "Hold the USB event marker in front of the camera.",
+    "found": "Note: event marker found.",
     "not_found": "Note: no USB event marker found."
   },
   "instructions": {
