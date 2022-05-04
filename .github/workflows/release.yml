@@ -13,7 +13,7 @@ jobs:
       fail-fast: false
       matrix:
         setting: ['home', 'clinic']
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
         task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
 
     steps:
