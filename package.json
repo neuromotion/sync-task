@@ -4,7 +4,7 @@
   "author": {
     "name": "Evan Dastin-van Rijn",
     "email": "evan_dastin-van_rijn@alumni.brown.edu",
-    "url": "borton.engin.brown.edu"
+    "url": "https://borton.engin.brown.edu"
   },
   "version": "2.2.6",
   "license": "MIT",
@@ -40,23 +40,35 @@
     "test": "react-scripts test",
     "prebuild": "electron-rebuild",
     "build": "react-scripts build",
+    
     "package:windows:programming": "electron-packager . programming --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
     "package:mac:programming": "electron-packager . programming --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
     "package:linux:programming": "electron-packager . programming --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+    
     "package:windows:interview": "electron-packager . interview --platform win32 --arch x64 --icon ./assets/icons/win/interview.ico --out dist/ --overwrite --asar ",
     "package:mac:interview": "electron-packager . interview --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/interview.icns --overwrite",
     "package:linux:interview": "electron-packager . interview --platform linux --arch x64 --icon ./assets/icons/mac/interview.icns --out dist/ --overwrite",
+    
     "package:windows:tsst": "electron-packager . tsst --platform win32 --arch x64 --icon ./assets/icons/win/tsst.ico --out dist/ --overwrite --asar ",
     "package:mac:tsst": "electron-packager . tsst --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/tsst.icns --overwrite",
     "package:linux:tsst": "electron-packager . tsst --platform linux --arch x64 --icon ./assets/icons/mac/tsst.icns --out dist/ --overwrite",
+    
     "package:windows:erp": "electron-packager . erp --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
     "package:mac:erp": "electron-packager . erp --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
     "package:linux:erp": "electron-packager . erp --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+    
     "package:windows:adaptive": "electron-packager . adaptive --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
     "package:mac:adaptive": "electron-packager . adaptive --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
     "package:linux:adaptive": "electron-packager . adaptive --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+   
     "package:windows:amplitude": "electron-packager . amplitude --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
+    "package:mac:amplitude": "electron-packager . amplitude --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "package:linux:amplitude": "electron-packager . amplitude --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+   
     "package:windows:ramping": "electron-packager . ramping --platform win32 --arch x64 --icon ./assets/icons/win/programming.ico --out dist/ --overwrite --asar ",
+    "package:mac:ramping": "electron-packager . ramping --platform darwin --arch x64 --out dist/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "package:linux:ramping": "electron-packager . ramping --platform linux --arch x64 --icon ./assets/icons/mac/programming.icns --out dist/ --overwrite",
+   
     "postpackage:windows:programming": "electron-installer-windows --src dist/programming-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name programming --exe programming.exe --productName programming",
     "postpackage:windows:interview": "electron-installer-windows --src dist/interview-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name interview --exe interview.exe --productName interview",
     "postpackage:windows:tsst": "electron-installer-windows --src dist/tsst-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name tsst --exe tsst.exe --productName tsst",
@@ -64,14 +76,21 @@
     "postpackage:windows:adaptive": "electron-installer-windows --src dist/adaptive-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name adaptive --exe adaptive.exe --productName adaptive",
     "postpackage:windows:amplitude": "electron-installer-windows --src dist/amplitude-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name amplitude --exe amplitude.exe --productName amplitude",
     "postpackage:windows:ramping": "electron-installer-windows --src dist/ramping-win32-x64/ --dest dist/installers/ --overwrite --homepage https://ccv.brown.edu/ --name ramping --exe ramping.exe --productName ramping",
+    
     "postpackage:linux:programming": "electron-installer-debian --src dist/programming-linux-x64/ --dest dist/installers/ --arch x64 --overwrite --name programming --productName programming --genericName programming --bin programming",
     "postpackage:linux:interview": "electron-installer-debian --src dist/interview-linux-x64/ --dest dist/installers/ --arch x64 --overwrite --name interview --productName interview --genericName interview --bin interview",
     "postpackage:linux:tsst": "electron-installer-debian --src dist/tsst-linux-x64/ --dest dist/installers/ --arch x64 --overwrite --name tsst --productName tsst --genericName tsst --bin tsst",
     "postpackage:linux:erp": "electron-installer-debian --src dist/erp-linux-x64/ --dest dist/installers/ --arch x64 --overwrite --name erp --productName erp --genericName erp --bin erp",
+    "postpackage:linux:adaptive": "electron-installer-debian --src dist/adaptive-linux-x64/ --dest dist/installers/ --arch x64 --overwrite --name adaptive --productName adaptive --genericName adaptive --bin adaptive",
+    
     "installer:mac:programming": "electron-installer-dmg ./dist/programming-darwin-x64/programming.app programming-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
     "installer:mac:interview": "electron-installer-dmg ./dist/interview-darwin-x64/interview.app interview-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/interview.icns --overwrite",
     "installer:mac:tsst": "electron-installer-dmg ./dist/tsst-darwin-x64/tsst.app tsst-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/tsst.icns --overwrite",
     "installer:mac:erp": "electron-installer-dmg ./dist/erp-darwin-x64/erp.app erp-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "installer:mac:adaptive": "electron-installer-dmg ./dist/adaptive-darwin-x64/adaptive.app adaptive-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "installer:mac:amplitude": "electron-installer-dmg ./dist/amplitude-darwin-x64/amplitude.app amplitude-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
+    "installer:mac:ramping": "electron-installer-dmg ./dist/ramping-darwin-x64/ramping.app ramping-${npm_package_version} --out ./dist/installers/ --icon ./assets/icons/mac/programming.icns --overwrite",
+   
     "rebuild": "electron-rebuild",
     "eject": "react-scripts eject",
     "electron": "electron .",
@@ -84,21 +103,34 @@
     "dev:home:interview": "dotenv -e env/.env.interview npm run dev:home",
     "dev:home:tsst": "dotenv -e env/.env.tsst npm run dev:home",
     "dev:home:erp": "dotenv -e env/.env.erp npm run dev:home",
+    "dev:home:adaptive": "dotenv -e env/.env.adaptive npm run dev:home",
     "dev:home:video": "dotenv -e env/.env.video npm run dev:home",
     "dev:home:video:programming": "dotenv -e env/.env.programming npm run dev:home:video",
     "dev:home:video:interview": "dotenv -e env/.env.interview npm run dev:home:video",
     "dev:home:video:tsst": "dotenv -e env/.env.tsst npm run dev:home:video",
     "dev:home:video:erp": "dotenv -e env/.env.erp npm run dev:home:video",
+    "dev:home:video:adaptive": "dotenv -e env/.env.adaptive npm run dev:home:video",
+    "dev:home:video:amplitude": "dotenv -e env/.env.amplitude npm run dev:home:video",
+    "dev:home:video:ramping": "dotenv -e env/.env.ramping npm run dev:home:video",
+
     "dev:clinic:video": "dotenv -e env/.env.video npm run dev:clinic",
     "dev:clinic:video:programming": "dotenv -e env/.env.programming npm run dev:clinic:video",
     "dev:clinic:video:interview": "dotenv -e env/.env.interview npm run dev:clinic:video",
     "dev:clinic:video:tsst": "dotenv -e env/.env.tsst npm run dev:clinic:video",
     "dev:clinic:video:erp": "dotenv -e env/.env.erp npm run dev:clinic:video",
+    "dev:clinic:video:adaptive": "dotenv -e env/.env.adaptive npm run dev:clinic:video",
+    "dev:clinic:video:amplitude": "dotenv -e env/.env.amplitude npm run dev:clinic:video",
+    "dev:clinic:video:ramping": "dotenv -e env/.env.ramping npm run dev:clinic:video",
+
     "dev:clinic": "dotenv -e env/.env.clinic npm run dev",
     "dev:clinic:programming": "dotenv -e env/.env.programming npm run dev:clinic",
     "dev:clinic:interview": "dotenv -e env/.env.interview npm run dev:clinic",
     "dev:clinic:tsst": "dotenv -e env/.env.tsst npm run dev:clinic",
     "dev:clinic:erp": "dotenv -e env/.env.erp npm run dev:clinic",
+    "dev:clinic:adaptive": "dotenv -e env/.env.adaptive npm run dev:clinic",
+    "dev:clinic:amplitude": "dotenv -e env/.env.amplitude npm run dev:clinic",
+    "dev:clinic:ramping": "dotenv -e env/.env.ramping npm run dev:clinic",
+
     "dev:firebase": "dotenv -e env/.env.firebase npm run dev",
     "dev:turk-prolific": "dotenv -e env/.env.turk-prolific npm run dev",
     "build:turk-prolific": "dotenv -e env/.env.turk-prolific npm run build",
@@ -110,6 +142,7 @@
     "build:home:adaptive": "dotenv -e env/.env.adaptive npm run build:home",
     "build:home:amplitude": "dotenv -e env/.env.amplitude npm run build:home",
     "build:home:ramping": "dotenv -e env/.env.ramping npm run build:home",
+    
     "build:home:video": "dotenv -e env/.env.video npm run build:home",
     "build:home:video:programming": "dotenv -e env/.env.programming npm run build:home:video",
     "build:home:video:interview": "dotenv -e env/.env.interview npm run build:home:video",
@@ -118,6 +151,7 @@
     "build:home:video:adaptive": "dotenv -e env/.env.adaptive npm run build:home:video",
     "build:home:video:amplitude": "dotenv -e env/.env.amplitude npm run build:home:video",
     "build:home:video:ramping": "dotenv -e env/.env.ramping npm run build:home:video",
+    
     "build:clinic:video": "dotenv -e env/.env.video npm run build:clinic",
     "build:clinic:video:programming": "dotenv -e env/.env.programming npm run build:clinic:video",
     "build:clinic:video:interview": "dotenv -e env/.env.interview npm run build:clinic:video",
@@ -126,6 +160,7 @@
     "build:clinic:video:adaptive": "dotenv -e env/.env.adaptive npm run build:clinic:video",
     "build:clinic:video:amplitude": "dotenv -e env/.env.amplitude npm run build:clinic:video",
     "build:clinic:video:ramping": "dotenv -e env/.env.ramping npm run build:clinic:video",
+    
     "build:clinic": "dotenv -e env/.env.clinic npm run build",
     "build:clinic:programming": "dotenv -e env/.env.programming npm run build:clinic",
     "build:clinic:interview": "dotenv -e env/.env.interview npm run build:clinic",
@@ -134,6 +169,7 @@
     "build:clinic:adaptive": "dotenv -e env/.env.adaptive npm run build:clinic",
     "build:clinic:amplitude": "dotenv -e env/.env.amplitude npm run build:clinic",
     "build:clinic:ramping": "dotenv -e env/.env.ramping npm run build:clinic",
+    
     "build:firebase": "dotenv -e env/.env.firebase npm run build"
   },
   "config": {
