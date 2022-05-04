@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         setting: ['home', 'clinic']
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-        task: [programming, interview, tsst, erp]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
+        task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
 
     steps:
       # Set up js package
@@ -30,7 +30,6 @@ jobs:
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info
-
       # install, test, build package
       - name: npm install
         run: |

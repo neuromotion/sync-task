@@ -7,11 +7,11 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: windows-2019
     strategy:
       fail-fast: false
       matrix:
-        task: [programming, interview, tsst, erp]
+        task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
     steps:
      # Set up js package
       - uses: actions/checkout@v1
@@ -26,7 +26,6 @@ jobs:
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info
-
       # install, test, build package
       - name: npm install
         run: |

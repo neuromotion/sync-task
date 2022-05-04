@@ -18,8 +18,8 @@ jobs:
       matrix:
         setting: [home, clinic]
         video: [on, off]
-        task: [programming, interview, tsst, erp]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
+        os: [ubuntu-latest, macOS-latest, windows-2019]
         exclude:
           # exclude clinic video on ubuntu-latest
           - os: ubuntu-latest
@@ -42,7 +42,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-
       # install, test, build package
       - name: npm install
         run: |
