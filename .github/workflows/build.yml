@@ -46,6 +46,7 @@ jobs:
       # install, test, build package
       - name: npm install
         run: |
+          git config --global url."https://github.com/".insteadOf git://github.com/
           npm config set "//npm.pkg.github.com/:_authToken" ${{ secrets.GITHUB_TOKEN }}
           npm install
       - name: Load .env file
