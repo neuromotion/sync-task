@@ -26,7 +26,8 @@ jobs:
       - name: Set package version and name
         uses: brown-ccv/gh-actions/get-package-info@main
         id: package_info
-
+      - name: Fix up git URLs
+        run: echo -e '[url "https://github.com/"]\n  insteadOf = "git://github.com/"' >> ~/.gitconfig
       # install, test, build package
       - name: npm install
         run: |
