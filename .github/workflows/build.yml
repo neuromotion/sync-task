@@ -18,7 +18,7 @@ jobs:
       matrix:
         setting: [home, clinic]
         video: [on, off]
-        task: [programming, interview, tsst, erp]
+        task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
         os: [ubuntu-latest, macOS-latest, windows-latest]
         exclude:
           # exclude clinic video on ubuntu-latest
