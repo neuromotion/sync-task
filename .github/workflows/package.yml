@@ -12,7 +12,7 @@ on:
         required: true
         default: 'win'
       task:
-        description: Which task to build - 'programming', 'interview', 'tsst', 'erp', 'all'
+        description: Which task to build - 'programming', 'interview', 'tsst', 'erp', 'adaptive', 'amplitude', 'ramping', 'all'
         required: true
         default: 'programming'
 
@@ -30,11 +30,14 @@ jobs:
            (github.event.inputs.os == 'mac' && fromJSON('["macOS-latest"]')) ||
            (github.event.inputs.os == 'linux' && fromJSON('["ubuntu-latest"]')) }}
         task: ${{
-          (github.event.inputs.task == 'all' && fromJSON('["programming", "interview", "tsst","erp"]')) ||
+          (github.event.inputs.task == 'all' && fromJSON('["programming", "interview", "tsst","erp","adaptive","amplitude","ramping"]')) ||
            (github.event.inputs.task == 'programming' && fromJSON('["programming"]')) ||
            (github.event.inputs.task == 'interview' && fromJSON('["interview"]')) ||
            (github.event.inputs.task == 'tsst' && fromJSON('["tsst"]')) ||
-           (github.event.inputs.task == 'erp' && fromJSON('["erp"]')) }}
+           (github.event.inputs.task == 'erp' && fromJSON('["erp"]')) ||
+           (github.event.inputs.task == 'adaptive' && fromJSON('["adaptive"]')) ||
+           (github.event.inputs.task == 'amplitude' && fromJSON('["amplitude"]')) ||
+           (github.event.inputs.task == 'ramping' && fromJSON('["ramping"]')) }}
 
     steps:
     # Set up js package

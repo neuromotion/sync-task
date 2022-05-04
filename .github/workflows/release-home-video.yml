@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        task: [programming, interview, tsst, erp]
+        task: [programming, interview, tsst, erp, adaptive, amplitude, ramping]
     steps:
      # Set up js package
       - uses: actions/checkout@v1
